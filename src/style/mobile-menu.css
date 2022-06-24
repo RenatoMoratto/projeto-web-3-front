@@ -1,0 +1,36 @@
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.menu-hamburguer-wrapper,
+#mobile-menu {
+  display: none;
+}
+
+@media (max-width: 635px) {
+  .menu-hamburguer-wrapper {
+    display: block;
+  }
+
+  #mobile-menu {
+    background-color: var(--color-white);
+    min-height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    margin-top: 1rem;
+    padding: 2rem 0;
+  }
+
+  #mobile-menu ul {
+    padding: 0 1.5rem;
+  }
+
+  #mobile-menu li {
+    display: block;
+    width: 100%;
+    padding: 0.875rem 0.625rem;
+  }
+}
