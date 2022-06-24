@@ -50,12 +50,12 @@ function LoginModal({ setShowModal }) {
 				<h1>Login</h1>
 				<div className="input-group">
 					<label htmlFor="email">Email</label>
-					<input value={email} onChange={setEmail} id="email" type="email" />
+					<input value={email} onChange={e => setEmail(e.target.value)} id="email" type="email" />
 					{validation.includes("email") && <p className="invalid-text">Insert a valid email address</p>}
 				</div>
 				<div className="input-group">
 					<label htmlFor="senha">Senha</label>
-					<input value={password} onChange={setPassword} id="senha" type="password" />
+					<input value={password} onChange={e => setPassword(e.target.value)} id="senha" type="password" />
 					{validation.includes("password") && (
 						<p className="invalid-text">The password must be at least 3 characters long</p>
 					)}

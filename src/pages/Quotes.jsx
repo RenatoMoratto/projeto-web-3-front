@@ -29,7 +29,14 @@ function Quotes() {
 			<form className="search-bar" onSubmit={submitHandler}>
 				<div>
 					<label for="totQuotes">Total of quotes:</label>
-					<input id="totQuotes" type="number" value={totQuotes} onChange={setTotQuotes} min="1" max="500" />
+					<input
+						id="totQuotes"
+						type="number"
+						value={totQuotes}
+						onChange={e => setTotQuotes(e.target.value)}
+						min="1"
+						max="500"
+					/>
 				</div>
 				<div>
 					<button id="randomQuote" className="btn" onClick={() => setParam("random")}>
