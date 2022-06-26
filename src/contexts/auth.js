@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
 	const [token, setToken] = useState(tokenInicial);
 
-	const usuarioEstaLogado = !!token;
+	const isLoggedIn = !!token;
 
 	const LogoutHandler = () => {
 		setToken("");
@@ -26,6 +26,7 @@ export const AuthProvider = ({ children }) => {
 			headers: new Headers({ "Content-Type": "application/json" }),
 			body: JSON.stringify({ email, password }),
 		});
+
 		const data = await response.json();
 
 		if (response.status >= 200 && response.status < 300) {
@@ -56,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 
 	const contextValue = {
 		token,
-		estaLogado: usuarioEstaLogado,
+		isLoggedIn: isLoggedIn,
 		login: LoginHandler,
 		register: RegisterHandler,
 		logout: LogoutHandler,
