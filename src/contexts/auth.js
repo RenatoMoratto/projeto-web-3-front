@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { apiUrl } from "../api";
 
 const AuthContext = createContext({
 	token: "",
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
 	const getUser = async (email, token) => {
 		try {
-			const response = await fetch(`${process.env.REACT_APP_API_URL}/user?email=${email}`, {
+			const response = await fetch(`${apiUrl}/user?email=${email}`, {
 				headers: new Headers({ Authorization: `Bearer ${token}` }),
 			});
 
@@ -46,7 +47,7 @@ export const AuthProvider = ({ children }) => {
 
 	const LoginHandler = async ({ email, password }) => {
 		try {
-			const response = await fetch(`${process.env.REACT_APP_API_URL}/login`, {
+			const response = await fetch(`${apiUrl}/login`, {
 				method: "POST",
 				headers: new Headers({ "Content-Type": "application/json" }),
 				body: JSON.stringify({ email, password }),
@@ -69,7 +70,7 @@ export const AuthProvider = ({ children }) => {
 
 	const RegisterHandler = async ({ name, email, password }) => {
 		try {
-			const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, {
+			const response = await fetch(`${apiUrl}/register`, {
 				method: "POST",
 				headers: new Headers({ "Content-Type": "application/json" }),
 				body: JSON.stringify({ name, email, password }),

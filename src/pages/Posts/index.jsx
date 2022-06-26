@@ -3,6 +3,7 @@ import Post from "../../components/Post";
 import SearchBar from "../../components/SearchBar";
 import NewPostModal from "../../components/NewPostModal";
 import AuthContext from "../../contexts/auth";
+import { apiUrl } from "../../api";
 
 import styles from "./posts.module.css";
 
@@ -33,7 +34,7 @@ function Posts() {
 	useEffect(() => {
 		async function getPosts() {
 			try {
-				const response = await fetch(`${process.env.REACT_APP_API_URL}/posts${param}`, {
+				const response = await fetch(`${apiUrl}/posts${param}`, {
 					headers: new Headers({ Authorization: `Bearer ${token}` }),
 				});
 				const data = await response.json();

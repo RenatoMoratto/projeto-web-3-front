@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import AuthContext from "../../contexts/auth";
 import Modal from "../Modal";
 import Input from "../Input";
+import { apiUrl } from "../../api";
 import styles from "./new-post.module.css";
 
 function LoginModal({ onClose, onSearch }) {
@@ -44,7 +45,7 @@ function LoginModal({ onClose, onSearch }) {
 			formdata.append("user", user.id);
 
 			try {
-				const response = await fetch(`${process.env.REACT_APP_API_URL}/post`, {
+				const response = await fetch(`${apiUrl}/post`, {
 					method: "POST",
 					headers: new Headers({ Authorization: `Bearer ${token}` }),
 					body: formdata,
