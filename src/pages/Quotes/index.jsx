@@ -58,8 +58,8 @@ function Quotes() {
 				}
 			/>
 			<main className={styles.quotes}>
-				{quotes.map((quote, i) => (
-					<Quote key={quote.author + i} en={quote.en} author={quote.author} />
+				{quotes.map(quote => (
+					<Quote key={quote._id} en={quote.en} author={quote.author} />
 				))}
 			</main>
 		</>
