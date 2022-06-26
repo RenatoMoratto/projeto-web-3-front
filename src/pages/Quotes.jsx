@@ -6,8 +6,7 @@ function Quotes() {
 	const [quotes, setQuotes] = useState([]);
 	const [totQuotes, setTotQuotes] = useState(3);
 	const [param, setParam] = useState("");
-
-	const submitHandler = e => {};
+	const [search, setSearch] = useState(true);
 
 	useEffect(() => {
 		async function getQuotes() {
@@ -22,13 +21,13 @@ function Quotes() {
 		}
 
 		getQuotes();
-	}, [param]);
+	}, [search, param]);
 
 	return (
 		<>
-			<form className="search-bar" onSubmit={submitHandler}>
+			<section className="search-bar">
 				<div>
-					<label for="totQuotes">Total of quotes:</label>
+					<label htmlFor="totQuotes">Total of quotes:</label>
 					<input
 						id="totQuotes"
 						type="number"
@@ -38,15 +37,29 @@ function Quotes() {
 						max="500"
 					/>
 				</div>
-				<div>
-					<button id="randomQuote" className="btn" onClick={() => setParam("random")}>
+				<div className="btns">
+					<button
+						id="randomQuote"
+						className="btn"
+						onClick={() => {
+							setParam("/random");
+							setSearch(prevState => !prevState);
+						}}
+					>
 						Random quote
 					</button>
-					<button className="btn" type="submit" onClick={() => setParam(`?count=${totQuotes}`)}>
+					<button
+						className="btn"
+						type="submit"
+						onClick={() => {
+							setParam(`?count=${totQuotes}`);
+							setSearch(prevState => !prevState);
+						}}
+					>
 						Search
 					</button>
 				</div>
-			</form>
+			</section>
 			<main className="quotes">
 				{quotes.map((quote, i) => (
 					<Quote key={quote.author + i} en={quote.en} author={quote.author} />
