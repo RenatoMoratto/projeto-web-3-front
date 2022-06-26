@@ -7,23 +7,23 @@ import Home from "./pages/Home";
 import Quotes from "./pages/Quotes";
 
 function App() {
-	const { estaLogado, logout } = useContext(AuthContext);
+	const { isLoggedIn, logout } = useContext(AuthContext);
 	const [showModal, setShowModal] = useState(false);
-	
+
 	const showModalHandler = () => setShowModal(true);
 
 	useEffect(() => {
-		if (estaLogado) {
+		if (isLoggedIn) {
 			setShowModal(false);
 		}
-	}, [estaLogado]);
+	}, [isLoggedIn]);
 
 	return (
 		<>
 			{showModal && <LoginModal onClose={() => setShowModal(false)} />}
-			<Header onClick={estaLogado ? logout : showModalHandler} />
-			{!estaLogado && <Home />}
-			{estaLogado && <Quotes />}
+			<Header onClick={isLoggedIn ? logout : showModalHandler} />
+			{!isLoggedIn && <Home />}
+			{isLoggedIn && <Quotes />}
 			<Footer />
 		</>
 	);
