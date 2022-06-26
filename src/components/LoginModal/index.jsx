@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import AuthContext from "../../contexts/auth";
-import ErrorMessage from "../ErrorMessage";
 import Modal from "../Modal";
+import Input from "../Input";
 import styles from "./login.module.css";
 
 function LoginModal({ onClose }) {
@@ -38,43 +38,37 @@ function LoginModal({ onClose }) {
 		<Modal title={isLogin ? "Login" : "New Account"} onClose={onClose}>
 			<form id="form" onSubmit={submitHandler}>
 				{!isLogin && (
-					<div className={styles["input-group"]}>
-						<label htmlFor="name">Username</label>
-						<input
-							className={validation.includes("name") ? styles.invalid : ""}
-							value={name}
-							onChange={e => setName(e.target.value)}
-							autoComplete="username"
-							id="name"
-							type="name"
-						/>
-						{validation.includes("name") && <ErrorMessage>Insert a valid username</ErrorMessage>}
-					</div>
+					<Input
+						value={name}
+						setValue={setName}
+						id="name"
+						label="Username"
+						errorMessage="Insert a valid username"
+						autoComplete="username"
+						type="name"
+						isInvalid={validation.includes("name")}
+					/>
 				)}
-				<div className={styles["input-group"]}>
-					<label htmlFor="email">E-mail</label>
-					<input
-						className={validation.includes("email") ? styles.invalid : ""}
-						value={email}
-						autoComplete="email"
-						onChange={e => setEmail(e.target.value)}
-						id="email"
-						type="email"
-					/>
-					{validation.includes("email") && <ErrorMessage>Insert a valid email address</ErrorMessage>}
-				</div>
-				<div className={styles["input-group"]}>
-					<label htmlFor="senha">Password</label>
-					<input
-						className={validation.includes("password") ? styles.invalid : ""}
-						value={password}
-						autoComplete="current-password"
-						onChange={e => setPassword(e.target.value)}
-						id="senha"
-						type="password"
-					/>
-					{validation.includes("password") && <ErrorMessage>Insert a valid password</ErrorMessage>}
-				</div>
+				<Input
+					value={email}
+					setValue={setEmail}
+					id="email"
+					label="E-mail"
+					errorMessage="Insert a valid email address"
+					autoComplete="email"
+					type="email"
+					isInvalid={validation.includes("email")}
+				/>
+				<Input
+					value={password}
+					setValue={setPassword}
+					id="password"
+					label="Password"
+					errorMessage="Insert a valid password"
+					autoComplete="current-password"
+					type="password"
+					isInvalid={validation.includes("password")}
+				/>
 				<button className="btn" type="submit">
 					{isLogin ? "Login" : "Register"}
 				</button>

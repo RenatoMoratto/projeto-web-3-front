@@ -6,25 +6,6 @@ form {
 	gap: 1rem;
 }
 
-input {
-	line-height: 1.55em;
-	width: 12rem;
-}
-
-input,
-label {
-	border-radius: 6px;
-}
-
-.input-group {
-	display: grid;
-	gap: 3px;
-}
-
-.invalid {
-	border: 1px solid red;
-}
-
 .signin {
 	margin-left: 5px;
 	color: var(--color-light-black);
