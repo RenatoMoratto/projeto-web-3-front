@@ -24,7 +24,7 @@ function Quotes() {
 	useEffect(() => {
 		async function getQuotes() {
 			try {
-				const response = await fetch(`${process.env.REACT_APP_API_KEY}/quotes${param}`, {
+				const response = await fetch(`${process.env.REACT_APP_API_URL}/quotes${param}`, {
 					headers: new Headers({ Authorization: `Bearer ${token}` }),
 				});
 				const data = await response.json();

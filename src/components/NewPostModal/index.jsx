@@ -44,7 +44,7 @@ function LoginModal({ onClose, onSearch }) {
 			formdata.append("user", user.id);
 
 			try {
-				const response = await fetch(`${process.env.REACT_APP_API_KEY}/post`, {
+				const response = await fetch(`${process.env.REACT_APP_API_URL}/post`, {
 					method: "POST",
 					headers: new Headers({ Authorization: `Bearer ${token}` }),
 					body: formdata,

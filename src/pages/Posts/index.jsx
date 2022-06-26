@@ -33,7 +33,7 @@ function Posts() {
 	useEffect(() => {
 		async function getPosts() {
 			try {
-				const response = await fetch(`${process.env.REACT_APP_API_KEY}/posts${param}`, {
+				const response = await fetch(`${process.env.REACT_APP_API_URL}/posts${param}`, {
 					headers: new Headers({ Authorization: `Bearer ${token}` }),
 				});
 				const data = await response.json();
