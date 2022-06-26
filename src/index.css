@@ -116,20 +116,6 @@ main {
 	gap: 1.875rem;
 }
 
-.title {
-	font-size: 6.25em;
-	font-weight: 800;
-	line-height: 1;
-	letter-spacing: -0.05em;
-	color: var(--color-light-black);
-}
-
-.description {
-	font-size: 1.25em;
-	letter-spacing: -0.02em;
-	line-height: 1.6;
-}
-
 .btns {
 	margin-top: 1.875rem;
 }
@@ -163,14 +149,6 @@ main {
 	main {
 		padding: 3.75rem 0 0 1.25rem;
 		max-width: 95%;
-	}
-
-	.title {
-		font-size: 4.375em;
-	}
-
-	.description {
-		font-size: 1em;
 	}
 }
 
@@ -214,14 +192,6 @@ main {
 	main {
 		max-width: 90%;
 		padding: 2.5rem 0 3.125rem;
-	}
-
-	.title {
-		font-size: 3em;
-	}
-
-	.description {
-		font-size: 1em;
 	}
 }
 
