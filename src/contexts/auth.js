@@ -80,12 +80,10 @@ export const AuthProvider = ({ children }) => {
 
 			if (response.status === 201) {
 				alert(data.message);
-				return { success: true };
 			}
 			alert(data.message);
 		} catch (error) {
 			alert(error);
-			return { success: false };
 		}
 	};
 

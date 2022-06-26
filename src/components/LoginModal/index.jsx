@@ -11,6 +11,7 @@ function LoginModal({ onClose }) {
 	const [password, setPassword] = useState("");
 	const [validation, setValidation] = useState([]);
 	const [isLogin, setIsLogin] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const submitHandler = async e => {
 		e.preventDefault();
@@ -30,12 +31,9 @@ function LoginModal({ onClose }) {
 		setValidation(invalidFields);
 
 		if (invalidFields.length === 0) {
-			if (isLogin) {
-				login({ email, password });
-				return;
-			}
-			const response = register({ name, email, password });
-			setIsLogin(response.success);
+			setIsLoading(true);
+			isLogin ? login({ email, password }) : register({ name, email, password });
+			setIsLoading(false);
 		}
 	};
 
@@ -74,8 +72,9 @@ function LoginModal({ onClose }) {
 					type="password"
 					isInvalid={validation.includes("password")}
 				/>
-				<button className="btn" type="submit">
-					{isLogin ? "Login" : "Register"}
+				<button disabled={isLoading} className="btn" type="submit">
+					{!isLoading && (isLogin ? "Login" : "Register")}
+					{isLoading && "Loading..."}
 				</button>
 				<div>
 					<p>

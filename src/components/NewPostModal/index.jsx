@@ -12,6 +12,7 @@ function LoginModal({ onClose, onSearch }) {
 	const [file, setFile] = useState("");
 	const [fileUrl, setFileUrl] = useState("");
 	const [validation, setValidation] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const handleFileChange = e => {
 		const fileList = e.target.files;
@@ -30,7 +31,7 @@ function LoginModal({ onClose, onSearch }) {
 		const invalidFields = [];
 
 		if (!title || title.length < 3) {
-			invalidFields.push("name");
+			invalidFields.push("title");
 		}
 		if (!text || text.length < 3) {
 			invalidFields.push("text");
@@ -41,8 +42,12 @@ function LoginModal({ onClose, onSearch }) {
 			const formdata = new FormData();
 			formdata.append("title", title);
 			formdata.append("text", text);
-			formdata.append("file", file, file.name);
+			if (file) {
+				formdata.append("file", file, file.name);
+			}
 			formdata.append("user", user.id);
+
+			setIsLoading(true);
 
 			try {
 				const response = await fetch(`${apiUrl}/post`, {
@@ -51,13 +56,15 @@ function LoginModal({ onClose, onSearch }) {
 					body: formdata,
 				});
 
-				if (response.statusCode >= 200 && response.statusCode < 300) {
+				if (response.status >= 200 || response.status < 300) {
 					alert("Post created successfully");
 					onSearch();
 					onClose();
 				}
 			} catch (error) {
-				alert(error.message);
+				alert(error);
+			} finally {
+				setIsLoading(false);
 			}
 		}
 	};
@@ -89,8 +96,8 @@ function LoginModal({ onClose, onSearch }) {
 					<label htmlFor={text}>Image</label>
 					<input onChange={handleFileChange} id={text} type="file" />
 				</div>
-				<button className="btn" type="submit">
-					Save post
+				<button disabled={isLoading} className="btn" type="submit">
+					{isLoading ? "Loading..." : "Save post"}
 				</button>
 			</form>
 		</Modal>
