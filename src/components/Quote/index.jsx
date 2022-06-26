@@ -1,3 +1,5 @@
+import "./quote.module.css";
+
 function Quote({ en, author }) {
 	return (
 		<blockquote>
