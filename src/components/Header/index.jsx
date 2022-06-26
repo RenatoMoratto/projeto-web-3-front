@@ -1,11 +1,12 @@
 import LogoVercel from "../Logo/LogoVercel";
 import LogoNext from "../Logo/LogoNext";
 import HeaderButton from "./HeaderButton";
+import HeaderLink from "./HeaderLink";
 
 import "../../style/menu.css";
 import "../../style/mobile-menu.css";
 
-function Header({ onClick }) {
+function Header({ onLoginClick, onPageChange }) {
 	return (
 		<>
 			<div className="top-bar">
@@ -29,7 +30,7 @@ function Header({ onClick }) {
 							<LogoNext />
 						</a>
 						<div className="rigth">
-							<HeaderButton onClick={onClick} />
+							<HeaderButton onClick={onLoginClick} />
 
 							<div className="menu-hamburguer-wrapper">
 								<input id="menu-hamburguer" type="checkbox" />
@@ -43,13 +44,13 @@ function Header({ onClick }) {
 								<nav id="mobile-menu">
 									<ul>
 										<li>
-											<a href="#showcase">Showcase</a>
+											<HeaderLink title="Home" onClick={onPageChange} />
 										</li>
 										<li>
-											<a href="#docs">Docs</a>
+											<HeaderLink title="Posts" onClick={onPageChange} />
 										</li>
 										<li>
-											<a href="#blog">Blog</a>
+											<HeaderLink title="Quotes" onClick={onPageChange} />
 										</li>
 										<li>
 											<a href="#analytics">Analytics</a>
@@ -75,17 +76,13 @@ function Header({ onClick }) {
 						<a href="/">
 							<LogoNext />
 						</a>
-						<a href="#showcase">Showcase</a>
-						<a href="#docs">Docs</a>
-						<a href="#blog">Blog</a>
+						<HeaderLink title="Home" onClick={onPageChange} />
+						<HeaderLink title="Posts" onClick={onPageChange} />
+						<HeaderLink title="Quotes" onClick={onPageChange} />
 						<a href="#analytics">Analytics</a>
 						<a href="#examples">Examples</a>
 						<a href="#enterprise">Enterprise</a>
-						<HeaderButton onClick={onClick} />
-						{/*eslint-disable-next-line jsx-a11y/anchor-is-valid*/}
-						<a>
-							<i className="fa fa-github" style={{ fontSize: "24px" }}></i>
-						</a>
+						<HeaderButton onClick={onLoginClick} />
 					</nav>
 				</div>
 			</header>
