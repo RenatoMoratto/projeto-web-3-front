@@ -51,7 +51,7 @@ function Quotes() {
 						/>
 					</div>
 				}
-				searchButtons={
+				leftButtons={
 					<button id="randomQuote" className="btn" onClick={searchRandomHandler}>
 						Random quote
 					</button>
