@@ -24,3 +24,8 @@ label {
 .invalid {
 	border: 1px solid red;
 }
+
+.signin {
+	margin-left: 5px;
+	color: var(--color-light-black);
+}

@@ -4,6 +4,7 @@ const AuthContext = createContext({
 	token: "",
 	estaLogado: false,
 	login: ({ email, password }) => {},
+	register: ({ username, email, password }) => {},
 	logout: () => {},
 });
 
@@ -19,29 +20,45 @@ export const AuthProvider = ({ children }) => {
 		localStorage.removeItem("token");
 	};
 
-	const LoginHandler = ({ email, password }) => {
-		fetch(`${process.env.REACT_APP_API_KEY}/login`, {
+	const LoginHandler = async ({ email, password }) => {
+		const response = await fetch(`${process.env.REACT_APP_API_KEY}/login`, {
 			method: "POST",
 			headers: new Headers({ "Content-Type": "application/json" }),
 			body: JSON.stringify({ email, password }),
-		})
-			.then(response => response.json())
-			.then(data => {
-				console.log(data)
-				if (data.message) {
-					alert(data.message);
-					return;
-				}
-				localStorage.setItem("token", JSON.stringify(data.access_token));
-				setToken(data.access_token);
-			})
-			.catch(error => alert(error));
+		});
+		const data = await response.json();
+
+		if (response.status >= 200 && response.status < 300) {
+			localStorage.setItem("token", JSON.stringify(data.access_token));
+			setToken(data.access_token);
+			return;
+		}
+		
+		alert(data.message);
+	};
+
+	const RegisterHandler = async ({ name, email, password }) => {
+		const response = await fetch(`${process.env.REACT_APP_API_KEY}/register`, {
+			method: "POST",
+			headers: new Headers({ "Content-Type": "application/json" }),
+			body: JSON.stringify({ name, email, password }),
+		});
+
+		const data = await response.json();
+
+		if (response.status === 201) {
+			localStorage.setItem("token", JSON.stringify(data.access_token));
+			setToken(data.access_token);
+		}
+
+		alert(data.message);
 	};
 
 	const contextValue = {
 		token,
 		estaLogado: usuarioEstaLogado,
 		login: LoginHandler,
+		register: RegisterHandler,
 		logout: LogoutHandler,
 	};
 

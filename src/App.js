@@ -12,7 +12,7 @@ function App() {
 	const [showModal, setShowModal] = useState(false);
 	return (
 		<>
-			{showModal && <LoginModal setShowModal={setShowModal} />}
+			{showModal && <LoginModal onClose={() => setShowModal(false)} />}
 			<Header setShowModal={setShowModal} />
 			<Notification />
 			{!token && <Home />}
