@@ -48,8 +48,8 @@ function Quotes() {
 				</div>
 			</form>
 			<main className="quotes">
-				{quotes.map(quote => (
-					<Quote en={quote.en} author={quote.author} />
+				{quotes.map((quote, i) => (
+					<Quote key={quote.author + i} en={quote.en} author={quote.author} />
 				))}
 			</main>
 		</>
