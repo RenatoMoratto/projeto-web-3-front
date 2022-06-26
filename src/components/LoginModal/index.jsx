@@ -30,7 +30,12 @@ function LoginModal({ onClose }) {
 		setValidation(invalidFields);
 
 		if (invalidFields.length === 0) {
-			isLogin ? login({ email, password }) : register({ name, email, password });
+			if (isLogin) {
+				login({ email, password });
+				return;
+			}
+			const response = register({ name, email, password });
+			setIsLogin(response.success);
 		}
 	};
 

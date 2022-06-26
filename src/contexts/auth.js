@@ -79,13 +79,12 @@ export const AuthProvider = ({ children }) => {
 			const data = await response.json();
 
 			if (response.status === 201) {
-				localStorage.setItem("token", JSON.stringify(data.access_token));
-				setToken(data.access_token);
+				alert(data.message);
+				return { success: true };
 			}
-
-			alert(data.message);
 		} catch (error) {
 			alert(error);
+			return { success: false };
 		}
 	};
 
