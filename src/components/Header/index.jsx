@@ -1,9 +1,9 @@
-import LogoVercel from "./LogoVercel";
-import LogoNext from "./LogoNext";
+import LogoVercel from "../Logo/LogoVercel";
+import LogoNext from "../Logo/LogoNext";
 import HeaderButton from "./HeaderButton";
 
-import "../style/menu.css";
-import "../style/mobile-menu.css";
+import "../../style/menu.css";
+import "../../style/mobile-menu.css";
 
 function Header({ onClick }) {
 	return (
