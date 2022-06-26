@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Quote from "../../components/Quote";
 import SearchBar from "../../components/SearchBar";
 import styles from "./quotes.module.css";
+import AuthContext from "../../contexts/auth";
 
 function Quotes() {
+	const { token } = useContext(AuthContext);
 	const [quotes, setQuotes] = useState([]);
 	const [totQuotes, setTotQuotes] = useState(3);
 	const [param, setParam] = useState("");
@@ -22,7 +24,9 @@ function Quotes() {
 	useEffect(() => {
 		async function getQuotes() {
 			try {
-				const response = await fetch(`${process.env.REACT_APP_API_KEY}/quotes${param}`);
+				const response = await fetch(`${process.env.REACT_APP_API_KEY}/quotes${param}`, {
+					headers: new Headers({ Authorization: `Bearer ${token}` }),
+				});
 				const data = await response.json();
 
 				setQuotes(data);
@@ -32,7 +36,7 @@ function Quotes() {
 		}
 
 		getQuotes();
-	}, [search, param]);
+	}, [search, param, token]);
 
 	return (
 		<>
