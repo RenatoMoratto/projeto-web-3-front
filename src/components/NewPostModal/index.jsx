@@ -47,7 +47,7 @@ function LoginModal({ onClose, onSearch }) {
 			try {
 				const response = await fetch(`${apiUrl}/post`, {
 					method: "POST",
-					headers: new Headers({ Authorization: `Bearer ${token}` }),
+					headers: new Headers({ Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data" }),
 					body: formdata,
 				});
 
