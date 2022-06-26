@@ -9,7 +9,10 @@ function Posts() {
 	const [param, setParam] = useState("");
 	const [search, setSearch] = useState(true);
 
-	const searchHandler = () => setSearch(prevState => !prevState);
+	const searchHandler = () => {
+		setParam("");
+		setSearch(prevState => !prevState);
+	};
 	const searchRandomHandler = () => {
 		setParam("/random");
 		setSearch(prevState => !prevState);
@@ -44,13 +47,7 @@ function Posts() {
 			/>
 			<main className={styles.posts}>
 				{posts.map((post, i) => (
-					<Post
-						key={post._id}
-						title={post.title}
-						text={post.text}
-						file={"https://source.unsplash.com/600x400/?computer"}
-						user={post.user}
-					/>
+					<Post key={post._id} title={post.title} text={post.text} file={post.filepath} user={post.user} />
 				))}
 			</main>
 		</>
