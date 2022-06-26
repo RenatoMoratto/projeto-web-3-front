@@ -1,9 +1,11 @@
 import LogoVercel from "./LogoVercel";
 import LogoNext from "./LogoNext";
+import HeaderButton from "./HeaderButton";
+
 import "../style/menu.css";
 import "../style/mobile-menu.css";
 
-function Header({ setShowModal }) {
+function Header({ onClick }) {
 	return (
 		<>
 			<div className="top-bar">
@@ -27,9 +29,7 @@ function Header({ setShowModal }) {
 							<LogoNext />
 						</a>
 						<div className="rigth">
-							<button className="login btn" onClick={() => setShowModal(true)}>
-								Login
-							</button>
+							<HeaderButton onClick={onClick} />
 
 							<div className="menu-hamburguer-wrapper">
 								<input id="menu-hamburguer" type="checkbox" />
@@ -81,9 +81,7 @@ function Header({ setShowModal }) {
 						<a href="#analytics">Analytics</a>
 						<a href="#examples">Examples</a>
 						<a href="#enterprise">Enterprise</a>
-						<button className="login btn" onClick={() => setShowModal(true)}>
-							Login
-						</button>
+						<HeaderButton onClick={onClick} />
 						{/*eslint-disable-next-line jsx-a11y/anchor-is-valid*/}
 						<a>
 							<i className="fa fa-github" style={{ fontSize: "24px" }}></i>
