@@ -1,6 +1,6 @@
 import styles from "./modal.module.css";
 
-function Modal({ onClose, children }) {
+function Modal({ title, onClose, children }) {
 	return (
 		<>
 			<div className={styles.backdrop} />
@@ -8,6 +8,7 @@ function Modal({ onClose, children }) {
 				<div className={styles["close-button"]}>
 					<span onClick={onClose}>&times;</span>
 				</div>
+				<h1>{title}</h1>
 				<div>{children}</div>
 			</div>
 		</>
