@@ -1,0 +1,25 @@
+footer {
+	width: 100%;
+	margin-top: 3.438rem;
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.link {
+	color: var(--color-blue);
+}
+
+@media (max-width: 768px) {
+	footer {
+		margin-top: 0.625rem;
+	}
+}
+
+@media (max-width: 542px) {
+	footer {
+		margin-bottom: 3.438rem;
+	}
+}

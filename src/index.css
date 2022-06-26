@@ -41,8 +41,7 @@ p {
 
 .inner,
 .desktop-top,
-main,
-footer {
+main {
 	width: 100%;
 	max-width: 64rem;
 	margin: 0 auto;
@@ -190,20 +189,6 @@ main {
 	box-shadow: 0 0.25rem 0.875rem 0 rgb(0 0 0 / 18%);
 }
 
-/* Footer */
-
-footer {
-	margin-top: 3.438rem;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 1rem;
-}
-
-.link {
-	color: var(--color-blue);
-}
-
 @media (max-width: 1046px) {
 	.notification a {
 		max-width: 90%;
@@ -329,9 +314,5 @@ footer {
 		flex-direction: column;
 		align-items: center;
 		gap: 1.875rem;
-	}
-
-	footer {
-		margin-bottom: 3.438rem;
 	}
 }
