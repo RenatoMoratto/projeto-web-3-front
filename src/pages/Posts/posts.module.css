@@ -1,9 +1,10 @@
 .posts {
 	display: flex;
-    flex-direction: row;
+	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
 	max-width: 100%;
 	margin-block: 2rem;
+	padding-top: 0.5rem;
 	gap: 2rem;
 }
