@@ -44,6 +44,7 @@ function LoginModal({ onClose }) {
 							className={validation.includes("name") ? styles.invalid : ""}
 							value={name}
 							onChange={e => setName(e.target.value)}
+							autoComplete="username"
 							id="name"
 							type="name"
 						/>
@@ -55,6 +56,7 @@ function LoginModal({ onClose }) {
 					<input
 						className={validation.includes("email") ? styles.invalid : ""}
 						value={email}
+						autoComplete="email"
 						onChange={e => setEmail(e.target.value)}
 						id="email"
 						type="email"
@@ -66,6 +68,7 @@ function LoginModal({ onClose }) {
 					<input
 						className={validation.includes("password") ? styles.invalid : ""}
 						value={password}
+						autoComplete="current-password"
 						onChange={e => setPassword(e.target.value)}
 						id="senha"
 						type="password"
