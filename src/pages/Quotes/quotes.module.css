@@ -33,26 +33,3 @@ blockquote cite {
 blockquote cite:before {
 	content: " \2015 ";
 }
-
-.search-bar {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 0.75rem;
-}
-
-.search-bar input {
-	width: 3rem;
-	margin-left: 5px;
-}
-
-.search-bar .btn {
-	padding: .5rem 1rem;
-}
-
-.search-bar .btns {
-	margin-top: 0;
-	display: flex;
-	gap: 0.75rem;
-}
