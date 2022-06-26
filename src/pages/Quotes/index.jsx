@@ -62,9 +62,9 @@ function Quotes() {
 				}
 			/>
 			<main className={styles.quotes}>
-				{quotes.map(quote => (
-					<Quote key={quote._id} en={quote.en} author={quote.author} />
-				))}
+				{quotes.length === 0 && <p>No quotes registered.</p>}
+				{quotes.length > 0 &&
+					quotes.map(quote => <Quote key={quote._id} en={quote.en} author={quote.author} />)}
 			</main>
 		</>
 	);
