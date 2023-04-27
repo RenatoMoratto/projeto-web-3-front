@@ -1,1 +1,1 @@
-export const apiUrl = "https://projeto-web-3-back.herokuapp.com";
+export const apiUrl = "http://localhost:8080";

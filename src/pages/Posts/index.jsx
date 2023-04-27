@@ -19,6 +19,7 @@ function Posts() {
 		setParam("");
 		setSearch(prevState => !prevState);
 	};
+
 	const searchByTitleHandler = () => {
 		if (!title) {
 			setParam("");
@@ -28,13 +29,20 @@ function Posts() {
 		setParam(`?title=${title}`);
 		setSearch(prevState => !prevState);
 	};
+
 	const showModalHandler = () => setShowModal(true);
 	const hideModalHandler = () => setShowModal(false);
 
 	useEffect(() => {
 		async function getPosts() {
+			let path = "/posts";
+
+			if (param) {
+				path = `/postsByTitle${param}`;
+			}
+
 			try {
-				const response = await fetch(`${apiUrl}/posts${param}`, {
+				const response = await fetch(`${apiUrl}${path}`, {
 					headers: new Headers({ Authorization: `Bearer ${token}` }),
 				});
 				const data = await response.json();
@@ -79,7 +87,7 @@ function Posts() {
 							title={post.title}
 							text={post.text}
 							file={post.filepath}
-							user={post.user}
+							user={post.user.name}
 						/>
 					))}
 			</main>
