@@ -79,7 +79,6 @@ function LoginModal({ onClose, onSearch }) {
 					label="Title"
 					errorMessage="Insert a valid title"
 					autoComplete="title"
-					type="title"
 					isInvalid={validation.includes("title")}
 				/>
 				<Input
@@ -88,7 +87,8 @@ function LoginModal({ onClose, onSearch }) {
 					id="text"
 					label="Content"
 					errorMessage="Insert some content"
-					type="text"
+					type="textarea"
+					rows="3"
 					isInvalid={validation.includes("text")}
 				/>
 				{fileUrl !== "" && <img src={fileUrl} width="200rem" alt="" />}

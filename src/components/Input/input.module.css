@@ -1,10 +1,16 @@
 input,
-label {
+label,
+textarea {
 	border-radius: 6px;
 }
-input {
+input,
+textarea {
 	line-height: 1.55em;
 	width: 12rem;
+}
+
+textarea {
+	resize: vertical;
 }
 
 .input-group {

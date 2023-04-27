@@ -86,7 +86,7 @@ function Posts() {
 							key={post._id}
 							title={post.title}
 							text={post.text}
-							file={post.filepath}
+							file={post.filename}
 							user={post.user.name}
 						/>
 					))}

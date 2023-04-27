@@ -1,11 +1,13 @@
 import fallbackImage from "../../assets/imgs/fallback-image.png";
 import styles from "./post.module.css";
+import { apiUrl } from "../../api";
 
 function Post({ title, text, file, user }) {
+	console.log(`${apiUrl}/images/${file}`);
 	return (
 		<div className={styles.card}>
 			<div className={styles["card-header"]}>
-				<img src={file ? file : fallbackImage} alt="" width="600" />
+				<img src={file ? `${apiUrl}/images/${file}` : fallbackImage} alt="" width="600" />
 			</div>
 			<div className={styles["card-body"]}>
 				<h4>{title}</h4>
