@@ -37,11 +37,9 @@ export const AuthProvider = ({ children }) => {
 			if (response.status >= 200 && response.status < 300) {
 				localStorage.setItem("user", JSON.stringify(data));
 				setUser(data);
-				return;
 			}
-			alert(data.message);
 		} catch (error) {
-			alert(error);
+			throw error;
 		}
 	};
 
@@ -61,10 +59,9 @@ export const AuthProvider = ({ children }) => {
 				setToken(data.access_token);
 				return;
 			}
-
-			alert(data.message);
+			throw data.message;
 		} catch (error) {
-			alert(error);
+			throw error;
 		}
 	};
 
@@ -79,11 +76,12 @@ export const AuthProvider = ({ children }) => {
 			const data = await response.json();
 
 			if (response.status === 201) {
-				alert(data.message);
+				return;
 			}
-			alert(data.message);
+
+			throw data.message;
 		} catch (error) {
-			alert(error);
+			throw error;
 		}
 	};
 

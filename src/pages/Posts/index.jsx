@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Post from "../../components/Post";
+import Message from "../../components/Message";
 import SearchBar from "../../components/SearchBar";
 import NewPostModal from "../../components/NewPostModal";
 import AuthContext from "../../contexts/auth";
@@ -14,6 +15,7 @@ function Posts() {
 	const [title, setTitle] = useState("");
 	const [search, setSearch] = useState(true);
 	const [showModal, setShowModal] = useState(false);
+	const [error, setError] = useState("");
 
 	const searchHandler = () => {
 		setParam("");
@@ -35,6 +37,8 @@ function Posts() {
 
 	useEffect(() => {
 		async function getPosts() {
+			setError("");
+
 			let path = "/posts";
 
 			if (param) {
@@ -49,7 +53,7 @@ function Posts() {
 
 				setPosts(data);
 			} catch (error) {
-				alert(error);
+				setError(error);
 			}
 		}
 
@@ -78,6 +82,7 @@ function Posts() {
 					</button>
 				}
 			/>
+			{error.length > 0 && <Message>{error}</Message>}
 			<main className={styles.posts}>
 				{posts.length === 0 && <p>No posts registered.</p>}
 				{posts.length > 0 &&

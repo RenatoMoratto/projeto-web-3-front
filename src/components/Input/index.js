@@ -1,4 +1,4 @@
-import ErrorMessage from "../ErrorMessage";
+import Message from "../Message";
 import styles from "./input.module.css";
 
 function Input({ id, label, errorMessage, isInvalid, value, setValue, type, ...rest }) {
@@ -22,7 +22,7 @@ function Input({ id, label, errorMessage, isInvalid, value, setValue, type, ...r
 					{...rest}
 				/>
 			)}
-			{isInvalid && <ErrorMessage>{errorMessage}</ErrorMessage>}
+			{isInvalid && <Message>{errorMessage}</Message>}
 		</div>
 	);
 }

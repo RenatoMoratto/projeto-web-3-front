@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import AuthContext from "../../contexts/auth";
 import Modal from "../Modal";
 import Input from "../Input";
+import Message from "../Message";
 import styles from "./login.module.css";
 
 function LoginModal({ onClose }) {
@@ -12,10 +13,14 @@ function LoginModal({ onClose }) {
 	const [validation, setValidation] = useState([]);
 	const [isLogin, setIsLogin] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState("");
+	const [success, setSuccess] = useState("");
 
 	const submitHandler = async e => {
 		e.preventDefault();
 
+		setError("");
+		setSuccess("");
 		setValidation([]);
 		const invalidFields = [];
 
@@ -32,7 +37,18 @@ function LoginModal({ onClose }) {
 
 		if (invalidFields.length === 0) {
 			setIsLoading(true);
-			isLogin ? login({ email, password }) : register({ name, email, password });
+
+			try {
+				if (isLogin) {
+					await login({ email, password });
+					setSuccess("User logged in with success!");
+				} else {
+					await register({ name, email, password });
+					setSuccess("User register with success!");
+				}
+			} catch (error) {
+				setError(error);
+			}
 			setIsLoading(false);
 		}
 	};
@@ -72,6 +88,9 @@ function LoginModal({ onClose }) {
 					type="password"
 					isInvalid={validation.includes("password")}
 				/>
+				{error.length > 0 && <Message>{error}</Message>}
+				{success.length > 0 && <Message error={false}>{success}</Message>}
+
 				<button disabled={isLoading} className="btn" type="submit">
 					{!isLoading && (isLogin ? "Login" : "Register")}
 					{isLoading && "Loading..."}

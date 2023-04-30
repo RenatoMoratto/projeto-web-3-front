@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Quote from "../../components/Quote";
 import SearchBar from "../../components/SearchBar";
+import Message from "../../components/Message";
 import styles from "./quotes.module.css";
 import AuthContext from "../../contexts/auth";
 import { apiUrl } from "../../api";
@@ -11,6 +12,7 @@ function Quotes() {
 	const [totQuotes, setTotQuotes] = useState(3);
 	const [param, setParam] = useState("");
 	const [search, setSearch] = useState(true);
+	const [error, setError] = useState("");
 
 	const searchHandler = () => {
 		setParam(`?count=${totQuotes}`);
@@ -24,6 +26,7 @@ function Quotes() {
 
 	useEffect(() => {
 		async function getQuotes() {
+			setError("");
 			try {
 				const response = await fetch(`${apiUrl}/quotes${param}`, {
 					headers: new Headers({ Authorization: `Bearer ${token}` }),
@@ -32,7 +35,7 @@ function Quotes() {
 
 				setQuotes(data);
 			} catch (error) {
-				alert(error.message);
+				setError(error.message);
 			}
 		}
 
@@ -62,6 +65,8 @@ function Quotes() {
 					</button>
 				}
 			/>
+			{error.length > 0 && <Message>{error}</Message>}
+
 			<main className={styles.quotes}>
 				{quotes.length === 0 && <p>No quotes registered.</p>}
 				{quotes.length > 0 &&

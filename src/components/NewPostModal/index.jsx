@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import AuthContext from "../../contexts/auth";
 import Modal from "../Modal";
 import Input from "../Input";
+import Message from "../Message";
 import { apiUrl } from "../../api";
 import styles from "./new-post.module.css";
 
@@ -13,6 +14,8 @@ function LoginModal({ onClose, onSearch }) {
 	const [fileUrl, setFileUrl] = useState("");
 	const [validation, setValidation] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
+	const [error, setError] = useState("");
+	const [success, setSuccess] = useState("");
 
 	const handleFileChange = e => {
 		const fileList = e.target.files;
@@ -57,12 +60,12 @@ function LoginModal({ onClose, onSearch }) {
 				});
 
 				if (response.status >= 200 || response.status < 300) {
-					alert("Post created successfully");
+					setSuccess("Post created successfully");
 					onSearch();
 					onClose();
 				}
 			} catch (error) {
-				alert(error);
+				setError(error);
 			} finally {
 				setIsLoading(false);
 			}
@@ -96,6 +99,9 @@ function LoginModal({ onClose, onSearch }) {
 					<label htmlFor={text}>Image</label>
 					<input onChange={handleFileChange} id={text} type="file" />
 				</div>
+				{error.length > 0 && <Message>{error}</Message>}
+				{success.length > 0 && <Message error={false}>{success}</Message>}
+
 				<button disabled={isLoading} className="btn" type="submit">
 					{isLoading ? "Loading..." : "Save post"}
 				</button>
